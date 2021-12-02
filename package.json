@@ -34,6 +34,8 @@
     "@actions/core": "1.6.0",
     "@actions/github": "5.0.0",
     "@actions/glob": "0.2.0",
+    "@octokit/rest": "18.12.0",
+    "@octokit/plugin-retry": "3.0.9",
     "xml-js": "1.6.11"
   },
   "devDependencies": {
