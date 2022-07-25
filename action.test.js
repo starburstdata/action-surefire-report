@@ -38,13 +38,13 @@ describe('action should work', () => {
 
         github.context.payload.pull_request = {
             id: 1,
-            html_url: 'https://github.com/scacap/action-surefire-report',
+            html_url: 'https://github.com/starburstdata/action-surefire-report',
             head: { sha: 'sha123' }
         };
 
         jest.spyOn(github.context, 'repo', 'get').mockImplementation(() => {
             return {
-                owner: 'scacap',
+                owner: 'starburstdata',
                 repo: 'action-surefire-report'
             };
         });
@@ -71,7 +71,7 @@ describe('action should work', () => {
     it('should parse surefire reports and send a check run to GitHub', async () => {
         let request = null;
         const scope = nock('https://api.github.com')
-            .post('/repos/scacap/action-surefire-report/check-runs', body => {
+            .post('/repos/starburstdata/action-surefire-report/check-runs', body => {
                 request = body;
                 return body;
             })
@@ -88,7 +88,7 @@ describe('action should work', () => {
         inputs.report_paths = '**/surefire-reports/TEST-*AllOkTest.xml';
         let request = null;
         const scope = nock('https://api.github.com')
-            .post('/repos/scacap/action-surefire-report/check-runs', body => {
+            .post('/repos/starburstdata/action-surefire-report/check-runs', body => {
                 request = body;
                 return body;
             })
@@ -105,7 +105,7 @@ describe('action should work', () => {
         inputs.report_paths = '**/xxx/*.xml';
         let request = null;
         const scope = nock('https://api.github.com')
-            .post('/repos/scacap/action-surefire-report/check-runs', body => {
+            .post('/repos/starburstdata/action-surefire-report/check-runs', body => {
                 request = body;
                 return body;
             })
@@ -122,7 +122,7 @@ describe('action should work', () => {
         inputs.fail_if_no_tests = 'false';
         let request = null;
         const scope = nock('https://api.github.com')
-            .post('/repos/scacap/action-surefire-report/check-runs', body => {
+            .post('/repos/starburstdata/action-surefire-report/check-runs', body => {
                 request = body;
                 return body;
             })
@@ -142,7 +142,7 @@ describe('action should work', () => {
 
         let request = null;
         const scope = nock('https://api.github.com')
-            .post('/repos/scacap/action-surefire-report/check-runs', body => {
+            .post('/repos/starburstdata/action-surefire-report/check-runs', body => {
                 request = body;
                 return body;
             })
@@ -151,8 +151,8 @@ describe('action should work', () => {
         scope.done();
 
         expect(request).toStrictEqual(masterSuccess);
-    });    
-    
+    });
+
     it('should not send report on skip_publishing', async () => {
         inputs.skip_publishing = 'true';
 
@@ -166,7 +166,7 @@ describe('action should work', () => {
             inputs.report_paths = '**/surefire-reports/TEST-*AllOkTest.xml';
 
             const scope = nock('https://api.github.com')
-                .post('/repos/scacap/action-surefire-report/check-runs')
+                .post('/repos/starburstdata/action-surefire-report/check-runs')
                 .reply(200, {});
 
             inputs['fail_on_test_failures'] = 'true';
@@ -178,7 +178,7 @@ describe('action should work', () => {
 
         it('should fail on failures', async () => {
             const scope = nock('https://api.github.com')
-                .post('/repos/scacap/action-surefire-report/check-runs')
+                .post('/repos/starburstdata/action-surefire-report/check-runs')
                 .reply(200, {});
 
             inputs['fail_on_test_failures'] = 'true';
@@ -198,7 +198,7 @@ describe('action should work', () => {
 
             let request = null;
             const getRuns = nock('https://api.github.com')
-                .get('/repos/scacap/action-surefire-report/commits/sha123/check-runs?check_name=build&status=in_progress')
+                .get('/repos/starburstdata/action-surefire-report/commits/sha123/check-runs?check_name=build&status=in_progress')
                 .reply(200, {
                     check_runs: [
                         {
@@ -216,7 +216,7 @@ describe('action should work', () => {
                     ]
                 });
             const patchRun = nock('https://api.github.com')
-                .patch('/repos/scacap/action-surefire-report/check-runs/123', body => {
+                .patch('/repos/starburstdata/action-surefire-report/check-runs/123', body => {
                     request = body;
                     return body;
                 })
