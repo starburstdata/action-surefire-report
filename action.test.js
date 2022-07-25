@@ -227,7 +227,7 @@ describe('action should work', () => {
 
             expect(request).toStrictEqual({output: finishedWithFailures.output});
             expect(outputs).toHaveProperty('conclusion', 'failure');
-            expect(failed).toBeNull();
+            expect(failed).toBe('There were 11 failed tests');
         });
     });
 });
