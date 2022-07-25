@@ -1,3 +1,5 @@
+This is a fork of https://github.com/ScaCap/action-surefire-report as original repo seems to be inactive.
+
 # GitHub Action: Process maven surefire reports
 
 ![](https://github.com/scacap/action-surefire-report/workflows/build/badge.svg)
