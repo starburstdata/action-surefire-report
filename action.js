@@ -27,15 +27,20 @@ const action = async () => {
         const title = foundResults
             ? `${count} tests run, ${skipped} skipped, ${annotations.length} failed.`
             : 'No test results found!';
+        core.info("HERE 1");
         core.info(`Result: ${title}`);
-
+        core.info("HERE 2");
         const pullRequest = github.context.payload.pull_request;
+        core.info("HERE 3");
         const link = (pullRequest && pullRequest.html_url) || github.context.ref;
+        core.info("HERE 4");
         const status = 'completed';
+        core.info("HERE 5");
         const head_sha = commit || (pullRequest && pullRequest.head.sha) || github.context.sha;
-
+        core.info("HERE 6");
         core.info("TOKEN " + githubToken);
         const octokit = new RetryingOctokit({auth: githubToken, request: { retries: 3 }});
+        core.info("HERE 7");
         if (createCheck) {
             core.info(`Posting status '${status}' with conclusion '${conclusion}' to ${link} (sha: ${head_sha})`);
             const createCheckRequest = {
