@@ -16,13 +16,16 @@ const action = async () => {
     const failIfNoTests = core.getInput('fail_if_no_tests') === 'true';
     const skipPublishing = core.getInput('skip_publishing') === 'true';
 
+    core.info("HERE2 1");
+
     let { count, skipped, annotations } = await parseTestReports(reportPaths);
+    core.info("HERE2 2");
     const foundResults = count > 0 || skipped > 0;
     const conclusion =
         (foundResults && annotations.length === 0) || (!foundResults && !failIfNoTests)
             ? 'success'
             : 'failure';
-
+    core.info("HERE2 3");
     if (!skipPublishing) {
         const title = foundResults
             ? `${count} tests run, ${skipped} skipped, ${annotations.length} failed.`
